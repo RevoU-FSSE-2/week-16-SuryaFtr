@@ -16,9 +16,9 @@ exports.login_session = async (req, res) => {
     res.status(401).json({ error: "Invalid username or password" });
     return;
   }
-  const { accesToken, expireAt, refreshToken } = User.generateToken(user);
+  const { accesToken, expireAt, refreshToken, refreshExpireAt } = User.generateToken(user);
   res.cookie('accesToken', accesToken, { httpOnly: true, expire: expireAt });
-  res.cookie('refreshToken', refreshToken, { httpOnly: true, expire: expireAt });
+  res.cookie('refreshToken', refreshToken, { httpOnly: true, expire: refreshExpireAt });
   res.json();
 };
 

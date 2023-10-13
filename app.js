@@ -8,7 +8,7 @@ const postrouter = require('./route/post');
 const controller = require('./controller/usercontroller');
 const permissons = require('./permission');
 const mongoose = require("mongoose");
-const { loginLimiter } = require('./middleware/ratelimit')
+const { loginLimiter, postLimiter } = require('./middleware/ratelimit')
 require('dotenv').config()
 
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("Successfully connect to MongoDB."))
@@ -47,7 +47,7 @@ app.post("/login", loginLimiter, async (req, res) => {
 });
 
 // login with session & cookie
-app.post("/login_session", controller.login_session);
+app.post("/login_session", loginLimiter, controller.login_session);
 
 // logout session & clearing cookie
 app.post("/logout_session", controller.logout_session);
@@ -104,7 +104,7 @@ app.post("/requestreset", controller.passwordResetRequest);
 app.post("/reset", controller.passwordReset);
 
 // feature for create & get posting 
-app.use("/posting", postrouter);
+app.use("/posting", postLimiter, postrouter);
 
 const server = app.listen(3000, () => {
     console.log('Example app listening on port 3000!');
