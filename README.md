@@ -45,6 +45,7 @@ First, make sure you already have:
 - Git installed.
 - Node.js and npm installed.
 - A text editor or IDE (e.g., Visual Studio Code).
+- Postman installed, to testing server endpoint
 
 ### 2. Clone the Repository
 
@@ -79,6 +80,8 @@ npm run make_perm
 ```bash
 npm start
 ```
+
+- Open ``Postman`` application, and import file on folder ``.etc`` to postman collection.
 
 ## Project Explaination
 
