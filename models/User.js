@@ -10,7 +10,7 @@ class User {
         return user.password === hashedPassword;
     }
     static make_password(password) {
-        return CryptoJS.PBKDF2(password, process.env.SECRET, { keySize: 256 / 32, iterations: 1000 }).toString();
+        return CryptoJS.HmacSHA256(password, process.env.SECRET, { keySize: 256 / 32, iterations: 1000 }).toString();
     }
     static async create({ username, email, password }) {
         return await UserMongo.create({ username: username, email: email, password: this.make_password(password) });
@@ -40,7 +40,7 @@ class User {
     static async parseToken(token, options) {
         const decoded = jwt.verify(token, process.env.SECRET);
         const { username } = decoded; // throw error if invalid
-        return await this.get_without_password({username}, options);; // == { id:1, iat: 123123123 , exp: 123123123 }
+        return await this.get_without_password({ username }, options);; // == { id:1, iat: 123123123 , exp: 123123123 }
     }
     static async parseTokenSafe(token, options) {
         try {

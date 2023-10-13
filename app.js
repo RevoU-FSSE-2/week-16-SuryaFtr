@@ -53,20 +53,20 @@ app.post("/login_session", controller.login_session);
 app.post("/logout_session", controller.logout_session);
 
 // add/update permission to user
-app.post("/detachperm", async (req, res) => {
-    const { username, permission } = req.body;
-    const perm = await PermissionMongo.findOne({ name: permission });
-    const user = await User.get({ username });
-    await detachPerm(user, perm);
-    res.json({ message: "success" });
-});
-
-// remove permission to user
 app.post("/attachperm", async (req, res) => {
     const { username, permission } = req.body;
     const perm = await PermissionMongo.findOne({ name: permission });
     const user = await User.get({ username });
     await attachPerm(user, perm);
+    res.json({ message: "success" });
+});
+
+// remove permission to user 
+app.post("/detachperm", async (req, res) => {
+    const { username, permission } = req.body;
+    const perm = await PermissionMongo.findOne({ name: permission });
+    const user = await User.get({ username });
+    await detachPerm(user, perm);
     res.json({ message: "success" });
 });
 

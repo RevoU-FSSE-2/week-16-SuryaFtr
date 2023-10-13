@@ -38,7 +38,7 @@ exports.passwordResetRequest = async (req, res) => {
   }
   const key = Math.random().toString(36).substring(2, 15);
 
-  cache.put(key, user.email, 25 * 1 * 1000);
+  cache.put(key, user.email, 30 * 1 * 1000);
   sendEmail(user.email, key);
   res.json({ message: "Password reset email sent" });
 };
