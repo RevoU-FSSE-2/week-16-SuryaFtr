@@ -20,6 +20,7 @@ Which is have this feature on list below :
 * Content
 * Requirement Tech and Package
 * Getting Started
+* Deploy Server
 * Project Explaination
 
 ## Requirement Tech and Package
@@ -82,6 +83,9 @@ npm start
 ```
 
 - Open ``Postman`` application, and import file on folder ``.etc`` to postman collection.
+
+## Deploy Server
+This is the deployed server link : https://tame-teal-dog-cap.cyclic.app
 
 ## Project Explaination
 
