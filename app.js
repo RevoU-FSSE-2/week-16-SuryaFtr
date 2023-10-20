@@ -14,11 +14,6 @@ require('dotenv').config()
 mongoose.connect(process.env.MONGO_URL).then(() => console.log("Successfully connect to MongoDB."))
     .catch(err => console.error("Connection error", err));
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
-
 applyMiddleware(app);
 
 
